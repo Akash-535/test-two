@@ -14,7 +14,7 @@ const GsapSlider = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".gsap-slider",
-        start: "top top",
+        start: "60% center",
         end: "200%",
         scrub: 1,
         pin: true,
