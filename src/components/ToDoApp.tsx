@@ -183,6 +183,7 @@ const ToDoApp = () => {
               ""
             )}
           </div>
+          <div className="w-4/12 max-lg:hidden"></div>
         </form>
         <button
           onClick={saveButtonHandler}
