@@ -63,7 +63,7 @@ const ToDoApp = () => {
     <div className="min-h-screen flex justify-center items-center">
       <div className="container mx-auto px-4 flex flex-col items-center justify-center">
         <h2 className="text-center text-4xl font-bold pb-16">TO DO List</h2>
-        <form className="flex flex-wrap items-center justify-center gap-8 max-lg:flex-col">
+        <form className="w-full flex flex-wrap items-center justify-center gap-8 max-lg:flex-col">
           <div className="w-4/12 max-lg:w-8/12 flex justify-center items-start flex-col">
             <p className="pl-0.5 pb-1 text-xl font-medium text-start max-lg:text-lg max-md:text-sm">
               Name
