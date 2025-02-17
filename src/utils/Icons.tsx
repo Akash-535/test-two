@@ -89,8 +89,8 @@ export const SliderSecondIcon = () => (
         y2="3.57183"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#DF2BFF" />
-        <stop offset="1" stop-color="#00B7FF" />
+        <stop stopColor="#DF2BFF" />
+        <stop offset="1" stopColor="#00B7FF" />
       </linearGradient>
     </defs>
   </svg>
@@ -126,8 +126,8 @@ export const SliderThirdIcon = () => (
         y2="9.07797"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#DF2BFF" />
-        <stop offset="1" stop-color="#00B7FF" />
+        <stop stopColor="#DF2BFF" />
+        <stop offset="1" stopColor="#00B7FF" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_650_755"
@@ -137,8 +137,8 @@ export const SliderThirdIcon = () => (
         y2="14.6287"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#DF2BFF" />
-        <stop offset="1" stop-color="#00B7FF" />
+        <stop stopColor="#DF2BFF" />
+        <stop offset="1" stopColor="#00B7FF" />
       </linearGradient>
     </defs>
   </svg>
@@ -168,8 +168,61 @@ export const SliderFourthIcon = () => (
         y2="13.675"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#DF2BFF" />
-        <stop offset="1" stop-color="#00B7FF" />
+        <stop stopColor="#DF2BFF" />
+        <stop offset="1" stopColor="#00B7FF" />
+      </linearGradient>
+    </defs>
+  </svg>
+);
+
+export const HeroLayerIcon = () => (
+  <svg
+    width="319"
+    height="547"
+    viewBox="0 0 319 547"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g opacity="0.7" filter="url(#filter0_f_650_627)">
+      <circle
+        cx="349.5"
+        cy="197.5"
+        r="99.5"
+        fill="url(#paint0_linear_650_627)"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_f_650_627"
+        x="0"
+        y="-152"
+        width="699"
+        height="699"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="BackgroundImageFix"
+          result="shape"
+        />
+        <feGaussianBlur
+          stdDeviation="125"
+          result="effect1_foregroundBlur_650_627"
+        />
+      </filter>
+      <linearGradient
+        id="paint0_linear_650_627"
+        x1="250.341"
+        y1="296.655"
+        x2="417.659"
+        y2="171.986"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#DF2BFF" />
+        <stop offset="1" stopColor="#00B7FF" />
       </linearGradient>
     </defs>
   </svg>

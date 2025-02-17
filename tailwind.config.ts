@@ -9,6 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        'custom-black':"#010101",
+        'custom-pink':"#DF2BFF",
+        'custom-sky-blue':"#00B7FF"
       },
     },
   },
