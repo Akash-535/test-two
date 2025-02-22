@@ -1,3 +1,4 @@
+"use client";
 import { NEW_SWIPER_LIST, SLIDER_ICON_LIST } from "@/utils/helper";
 import { HeroLayerIcon } from "@/utils/Icons";
 import gsap from "gsap";
