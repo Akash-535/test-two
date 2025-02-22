@@ -11,7 +11,8 @@ export default {
       colors: {
         'custom-black':"#010101",
         'custom-pink':"#DF2BFF",
-        'custom-sky-blue':"#00B7FF"
+        'custom-sky-blue':"#00B7FF",
+        'custom-blue':"#407BFF"
       },
     },
   },

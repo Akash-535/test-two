@@ -7,10 +7,9 @@ import imgOne from "../../public/assets/images/first-image.webp";
 import gifTwo from "../../public/assets/gif/gif-1.gif";
 import gifFour from "../../public/assets/gif/gif-2.gif";
 import imgThree from "../../public/assets/images/slider-img-three.webp";
-gsap.registerPlugin(ScrollTrigger);
-
 const GsapSlider = () => {
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".gsap-slider",
@@ -30,9 +29,18 @@ const GsapSlider = () => {
       },
       "+=0.5"
     );
+    gsap.to(".progress-bar", {
+      width: "100%",
+      scrollTrigger: {
+        trigger: ".gsap-slider",
+        start: "60% center",
+        end: "bottom bottom",
+        scrub: 1,
+      },
+    });
   }, []);
   return (
-    <div className="bg-custom-black gsap-slider min-h-screen pt-[156px] pb-28 overflow-hidden mx-auto flex justify-center items-center">
+    <div className="bg-custom-black gsap-slider min-h-screen pt-[156px] pb-28 overflow-hidden mx-auto flex justify-center items-center relative">
       <div className="flex flex-col justify-center items-center px-5">
         <h2 className="text-white max-w-[830px] mx-auto text-5xl leading-[57.6px] text-center pb-[60px] max-lg:text-4xl max-md:text-3xl -5 max-lg:max-w-[740px] max-md:max-w-[540px] max-sm:max-w-[340px]">
           Transforming Secure, Modern{" "}
@@ -41,8 +49,11 @@ const GsapSlider = () => {
           </span>{" "}
           with AdaptsAI
         </h2>
+        <div className="w-full h-1 bg-gray-500 relative">
+          <div className="progress-bar h-3 bg-blue-500 w-0 static top-0 left-0 z-10"></div>
+        </div>
         <div className="overflow-hidden pt-[60px] max-w-[1440px]">
-          <div className="flex w-max slider-item left-0 ">
+          <div className="flex w-max slider-item left-0">
             {/* gsap content one */}
             <div className="min-w-[1440px] max-xl:min-w-[1000px] mx-auto px-5">
               <div

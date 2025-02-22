@@ -1,5 +1,5 @@
 "use client";
-import GsapSlider from "@/components/GsapSlider";
+import NewSlider from "@/components/NewSlider";
 import ToDoApp from "@/components/ToDoApp";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -31,7 +31,7 @@ const Hero = () => {
         ))}
       </div>
       {slug === "question-1" && <ToDoApp />}
-      {slug === "question-2" && <GsapSlider />}
+      {slug === "question-2" && <NewSlider />}
     </div>
   );
 };

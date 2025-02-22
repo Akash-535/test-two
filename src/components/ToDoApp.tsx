@@ -1,7 +1,8 @@
 "use client";
-import { CloseEyeIcon, DeleteIcon } from "@/utils/Icons";
+import { DeleteIcon } from "@/utils/Icons";
 import React, { useState } from "react";
 import CustomInput from "./common/CustomInput";
+import { DATA_TABLE } from "@/utils/helper";
 interface ToDoData {
   name: string;
   email: string;
@@ -20,16 +21,8 @@ const ToDoApp = () => {
   const [value, setValue] = useState<ToDoData>(toDoForm);
   const [error, setError] = useState(false);
   const [saveData, setSaveData] = useState<ToDoData[]>([]);
-  const [duplicateError, setDuplicateError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-  const checkDuplicate = (duplicateData: ToDoData) => {
-    return saveData.some(
-      (item) =>
-        item.email === duplicateData.email || item.phone === duplicateData.phone
-    );
-  };
-
   const showPasswordHandler = (e: any) => {
     e.preventDefault();
     setShowPassword((showPassword) => !showPassword);
@@ -38,18 +31,17 @@ const ToDoApp = () => {
   const saveButtonHandler = (e: any) => {
     e.preventDefault();
     setError(true);
-    if (checkDuplicate(value)) {
-      setDuplicateError(true);
-      return;
-    }
-    setDuplicateError(false);
-    const isValid = Object.values(toDoForm).every((field) => field !== "");
     if (
-      isValid &&
+      value.name !== "" &&
+      value.email !== "" &&
+      value.phone !== "" &&
+      value.password !== "" &&
+      value.confirmPassword !== "" &&
       value.password.length >= 6 &&
       emailRegex.test(value.email) &&
       value.phone.length >= 10 &&
-      value.confirmPassword.match(value.password)
+      value.confirmPassword.match(value.password) &&
+      saveData.some((obj) => obj.email !== value.email)
     ) {
       setSaveData([...saveData, value] as any);
       setValue(toDoForm);
@@ -60,7 +52,7 @@ const ToDoApp = () => {
     setSaveData((removeData) => removeData.filter((_, i) => i !== index));
   };
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-screen flex justify-center items-center py-20">
       <div className="container mx-auto px-4 flex flex-col items-center justify-center">
         <h2 className="text-center text-4xl font-bold pb-16">TO DO List</h2>
         <form className="w-full flex flex-wrap items-center justify-center gap-8 max-lg:flex-col">
@@ -99,6 +91,10 @@ const ToDoApp = () => {
             ) : !emailRegex.test(value.email) && value.email.length > 0 ? (
               <p className="text-red-500 text-base font-medium pl-1 max-lg:text-sm">
                 Email must be unique
+              </p>
+            ) : saveData.some((obj) => obj.email === value.email) ? (
+              <p className="text-red-500 text-base font-medium pl-1 max-lg:text-sm">
+                Email is already exists
               </p>
             ) : (
               ""
@@ -191,34 +187,49 @@ const ToDoApp = () => {
         >
           Add Data
         </button>
-        <div className="border border-black rounded-lg">
-          <div className="flex text-center max-lg:justify-between">
-            <p className="min-w-48 max-lg:min-w-36 max-md:min-w-24 py-4">
-              Name
-            </p>
-            <p className="min-w-48 max-lg:min-w-36 max-md:min-w-24 py-4">
-              Email
-            </p>
-            <p className=" min-w-48 max-lg:min-w-36 max-md:min-w-24 py-4 border-r-0">
-              Phone
-            </p>
-          </div>
-          {saveData.map((obj, i) => (
-            <div key={i} className="flex text-center border-t border-white">
-              <button onClick={() => removeDataHandler(i)}>
-                <DeleteIcon />
-              </button>
-              <p className="min-w-48 max-lg:min-w-36 max-md:min-w-24 p-2 max-lg:text-sm">
-                {obj.name}
-              </p>
-              <p className="min-w-48 max-lg:min-w-36 max-md:min-w-24 p-2 max-lg:text-sm">
-                {obj.email}
-              </p>
-              <p className="p-2 min-w-48 max-lg:min-w-36 max-md:min-w-24 max-lg:text-sm">
-                {obj.phone}
-              </p>
-            </div>
-          ))}
+        <div className="w-full overflow-x-auto">
+          <table className="table-auto w-full min-w-[500px] max-w-[1000px] mx-auto overflow-x-auto">
+            <thead>
+              <tr className="border-b border-black rounded-xl">
+                {DATA_TABLE.map((obj, i) => (
+                  <th
+                    key={i}
+                    className={`px-3 py-3 text-center whitespace-nowrap border-t border-black ${
+                      i === 0 ? "border-x" : "border-r"
+                    }`}
+                  >
+                    {obj}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {saveData.map((obj, i) => (
+                <tr key={i} className="border-b border-black rounded-lg">
+                  <td className="border-x border-t whitespace-nowrap px-4 py-3 text-center border-black">
+                    {obj.name}
+                  </td>
+                  <td className="border-r border-t whitespace-nowrap px-4 py-3 text-center border-black">
+                    {obj.email}
+                  </td>
+                  <td className="border-r border-t whitespace-nowrap px-4 py-3 text-center border-black">
+                    {obj.phone}
+                  </td>
+                  <td className="border-r border-t whitespace-nowrap px-4 py-3 text-center border-black">
+                    {obj.password}
+                  </td>
+                  <td className="border-r border-t whitespace-nowrap px-4 py-3 text-center border-black">
+                    <button
+                      onClick={() => removeDataHandler(i)}
+                      className="py-1 px-2"
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
