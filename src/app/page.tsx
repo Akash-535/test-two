@@ -1,9 +1,9 @@
-import Hero from "./test/[slug]/dashboard/page";
+import NewSlider from "@/components/NewSlider";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <NewSlider />
     </>
   );
 }
